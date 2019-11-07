@@ -22,7 +22,6 @@ jobs:
         host: host.example.com
         username: user
         key: ${{ secrets.PRIVATE_KEY }}
-        path: /opt/my_project
         script: |
           docker-compose ps
           docker-compose up -d

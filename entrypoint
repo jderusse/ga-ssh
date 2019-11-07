@@ -13,4 +13,4 @@ find "$SSH_PATH" -type d|xargs -r chmod 711
 eval $(ssh-agent) > /dev/null
 ssh-add "$SSH_PATH/id_rsa" > /dev/null
 
-echo -e "${INPUT_SCRIPT:-${SCRIPT}}\nexit" | ssh -p "${INPUT_PORT:-${PORT:-22}}" -o StrictHostKeyChecking=no -A -tt "${INPUT_USERNAME:-${USERNAME:-root}}@${INPUT_HOST:-${HOST}}"
+echo -e "${INPUT_SCRIPT:-${SCRIPT}}\nexit" | ssh -o StrictHostKeyChecking=no -A -tt "ssh://${INPUT_USERNAME:-${USERNAME:-root}}@${INPUT_HOST:-${HOST}}:${INPUT_PORT:-${PORT:-22}}"
