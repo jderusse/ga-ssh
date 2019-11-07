@@ -5,7 +5,7 @@ SSH_PATH="$HOME/.ssh"
 
 mkdir -p "$SSH_PATH"
 
-echo "$PRIVATE_KEY" > "$SSH_PATH/id_rsa"
+echo "${INPUT_PRIVATE_KEY:-${PRIVATE_KEY}}" > "$SSH_PATH/id_rsa"
 
 find "$SSH_PATH" -type f|xargs -r chmod 600
 find "$SSH_PATH" -type d|xargs -r chmod 711
@@ -13,4 +13,4 @@ find "$SSH_PATH" -type d|xargs -r chmod 711
 eval $(ssh-agent) > /dev/null
 ssh-add "$SSH_PATH/id_rsa" > /dev/null
 
-echo -e "${SCRIPT}\nexit" | ssh -p "${PORT:-22}" -o StrictHostKeyChecking=no -A -tt "${USERNAME}@${HOST}"
+echo -e "${INPUT_SCRIPT:-${SCRIPT}}\nexit" | ssh -p "${INPUT_PORT:-${PORT:-22}}" -o StrictHostKeyChecking=no -A -tt "${INPUT_USERNAME:-${USERNAME:-root}}@${INPUT_HOST:-${HOST}}"

@@ -9,6 +9,7 @@ inputs:
     default: 22
   username:
     description: 'ssh username'
+    default: root
   private_key:
     description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
   script:
