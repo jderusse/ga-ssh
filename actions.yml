@@ -1,0 +1,22 @@
+name: 'SSH Remote Commands'
+description: 'Executing remote ssh commands'
+author: 'Jérémy Derussé <jeremy@derusse.com>'
+inputs:
+  host:
+    description: 'ssh remote host'
+  port:
+    description: 'ssh remote port'
+    default: 22
+  username:
+    description: 'ssh username'
+  private_key:
+    description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
+  script:
+    description: 'execute commands'
+runs:
+  using: 'docker'
+  image: 'docker://jderusse/ga-ssh'
+
+branding:
+  icon: 'terminal'
+  color: 'orange'

@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+SSH_PATH="$HOME/.ssh"
+
+mkdir -p "$SSH_PATH"
+
+echo "$PRIVATE_KEY" > "$SSH_PATH/id_rsa"
+
+find "$SSH_PATH" -type f|xargs -r chmod 600
+find "$SSH_PATH" -type d|xargs -r chmod 711
+
+eval $(ssh-agent) > /dev/null
+ssh-add "$SSH_PATH/id_rsa" > /dev/null
+
+echo -e "${SCRIPT}\nexit" | ssh -p "${PORT:-22}" -o StrictHostKeyChecking=no -A -tt "${USERNAME}@${HOST}"
