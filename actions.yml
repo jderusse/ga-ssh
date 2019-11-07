@@ -1,6 +1,7 @@
 name: 'SSH Remote Commands'
 description: 'Executing remote ssh commands'
 author: 'Jérémy Derussé <jeremy@derusse.com>'
+
 inputs:
   host:
     description: 'ssh remote host'
@@ -14,9 +15,10 @@ inputs:
     description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
   script:
     description: 'execute commands'
+
 runs:
   using: 'docker'
-  image: 'docker://jderusse/ga-ssh'
+  image: 'docker://jderusse/ga-ssh:latest'
 
 branding:
   icon: 'terminal'
